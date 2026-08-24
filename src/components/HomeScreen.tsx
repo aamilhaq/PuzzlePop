@@ -30,7 +30,15 @@ export function HomeScreen({ onStart }: HomeScreenProps) {
   }, [customImage]);
 
   const handleUpload = (name: string, dataUrl: string) => {
-    setCustomImage({ name, src: dataUrl });
+    const custom: PuzzleImage = {
+      id: 'custom',
+      name: name || 'Uploaded',
+      url: dataUrl,
+      thumb: dataUrl,
+      fallback: 'from-neutral-400 to-neutral-600',
+    };
+    setCustomImage({ name: custom.name, src: dataUrl });
+    setSelectedImage(custom);
   };
 
   const handleSelect = (img: PuzzleImage) => {
